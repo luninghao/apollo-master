@@ -158,7 +158,7 @@ public class NamespaceController {
       try {
         namespaceService.createNamespace(Env.valueOf(model.getEnv()), namespace);
       } catch (Exception e) {
-        logger.error("create namespace fail.", e);
+        logger.error("create namespace fail..", e);
         Tracer.logError(
                 String.format("create namespace fail. (env=%s namespace=%s)", model.getEnv(),
                         namespace.getNamespaceName()), e);
