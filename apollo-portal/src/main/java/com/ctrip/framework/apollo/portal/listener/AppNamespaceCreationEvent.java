@@ -22,12 +22,17 @@ import com.ctrip.framework.apollo.common.entity.AppNamespace;
 
 import org.springframework.context.ApplicationEvent;
 
+/**
+ * AppNamespace 创建事件。
+ */
 public class AppNamespaceCreationEvent extends ApplicationEvent {
 
+  // 构造方法，将 AppNamespace 对象作为方法参数传入。
   public AppNamespaceCreationEvent(Object source) {
     super(source);
   }
 
+  // 获得事件对应的 AppNamespace 对象。
   public AppNamespace getAppNamespace() {
     Preconditions.checkState(source != null);
     return (AppNamespace) this.source;

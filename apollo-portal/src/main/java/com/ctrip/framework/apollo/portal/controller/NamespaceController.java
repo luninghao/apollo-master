@@ -152,6 +152,7 @@ public class NamespaceController {
 
     for (NamespaceCreationModel model : models) {
       NamespaceDTO namespace = model.getNamespace();
+      // 校验 AppNamespace 的 `appId` 和 `name` 非空。
       RequestPrecondition.checkArgumentsNotEmpty(model.getEnv(), namespace.getAppId(),
                                                  namespace.getClusterName(), namespace.getNamespaceName());
 
@@ -164,7 +165,7 @@ public class NamespaceController {
                         namespace.getNamespaceName()), e);
       }
     }
-
+    // 授予 Namespace Role
     namespaceService.assignNamespaceRoleToOperator(appId, namespaceName,userInfoHolder.getUser().getUserId());
 
     return ResponseEntity.ok().build();
