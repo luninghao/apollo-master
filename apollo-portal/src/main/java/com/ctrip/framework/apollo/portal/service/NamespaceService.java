@@ -98,6 +98,7 @@ public class NamespaceService {
 
 
   public NamespaceDTO createNamespace(Env env, NamespaceDTO namespace) {
+    // 设置 NamespaceDTO 的创建和修改人为当前管理员
     if (StringUtils.isEmpty(namespace.getDataChangeCreatedBy())) {
       namespace.setDataChangeCreatedBy(userInfoHolder.getUser().getUserId());
     }
@@ -105,6 +106,7 @@ public class NamespaceService {
     if (StringUtils.isEmpty(namespace.getDataChangeLastModifiedBy())) {
       namespace.setDataChangeLastModifiedBy(userInfoHolder.getUser().getUserId());
     }
+    // 创建 Namespace 到 Admin Service
     NamespaceDTO createdNamespace = namespaceAPI.createNamespace(env, namespace);
 
     Tracer.logEvent(TracerEventType.CREATE_NAMESPACE,
